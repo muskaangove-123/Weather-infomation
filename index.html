@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0">
+    <title> WEATHER APP </title>
+    <link rel ="stylesheet" href ="style.css">
+</head>
+<div class="card">
+    <div class="search">
+        <input type="text" placeholder=" Enter city name "spellcheck="false">
+        <button>
+            <img src="https://icon-library.com/images/in-search-of-icon/in-search-of-icon-13.jpg">
+        </button>
+    </div>
+    <div class="weather">
+        <img src="https://static.vecteezy.com/system/resources/previews/012/066/505/non_2x/sunny-and-rainy-day-weather-forecast-icon-meteorological-sign-3d-render-png.png" class="weather-icon">
+        <h1 class ="temp">0°c</h1>
+        <h2 class ="city">light</h2>
+        <div class="details">
+            <div class="col">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.CZ-3MADhO72SBFB1ii7HcwHaIu?rs=1&pid=ImgDetMain&o=7&rm=3" class="humidity">
+                <div>
+                    <p class="humidity-value">0%</p>
+                    <p>humidity</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <img src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/wind/wind-sock-in-a-windy-sky.jpg" class="Wind">
+                <div>
+                    <p class ="wind">15 km/h</p>
+                    <p> wind speed</p>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+
+
+<script>
+
+
+const apiKey = "c4531a810cab45d6e380663cfccae47c";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+
+
+
+async function checkWeather(city){
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    var data = await response.json();
+
+    console.log(data);
+
+    document.querySelector(".city").innerHTML=data.name;
+    document.querySelector(".temp").innerHTML= Math.round(data.main.temp)+ "°c" ;
+    document.querySelector(".humidity").innerHTML=data.main.humidity + "%";
+    document.querySelector(".wind").innerHTML=data.wind.speed + "km/h";
+    
+    
+    document.querySelector(".humidity-value").innerHTML = data.main.humidity + "%";
+}
+searchBtn.addEventListener("click",()=>{
+    checkWeather(searchBox.value);
+
+
+    
+
+})
+
+// 👉 ENTER key support (THIS WAS MISSING)
+searchBox.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        checkWeather(searchBox.value);
+    }
+})
+
+</script>
+
+
+</body>
+</html>
