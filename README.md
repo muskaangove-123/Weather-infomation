@@ -68,4 +68,5 @@ How the Application Works (Step-by-Step) :
 
 <-- LInk of weather-->
 
-file:///D:/all%20projects/weather%20system/weather%20system%20neha/index.html
+![Screenshot weather](https://github.com/user-attachments/assets/5e534f90-596c-448f-9abe-8adc526fe93c)
+
